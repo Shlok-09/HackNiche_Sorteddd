@@ -8,6 +8,12 @@ import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
 import Kanban from './pages/Kanban';
+import Calendar from './pages/Calendar';
+import Line from './pages/Charts/LineChart';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Finance from './pages/Finance';
+import Chatbot from './components/Chatbot';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
@@ -64,6 +70,10 @@ const App = () => {
               {themeSettings && (<ThemeSettings />)}
               <Routes>
                 <Route path="/kanban" element={<Kanban />} />  
+                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/line" element={<Line />} />
+                <Route path="/Expenses" element={<Finance />} />
+                <Route path="/chatbot" element={<Chatbot />} />
               </Routes>
             </div>
             <Footer />
