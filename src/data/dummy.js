@@ -10,6 +10,35 @@ import { HiOutlineRefresh } from 'react-icons/hi';
 import { TiTick } from 'react-icons/ti';
 import { GiLouvrePyramid } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
+import img1 from '../data/img1.png'
+
+export const exploreWorlds = [
+  {
+    id: 'world1',
+    imgUrl: img1,
+    title: 'The Hogwarts',
+  },
+  {
+    id: 'world2',
+    imgUrl: img1,
+    title: 'The Upside Down',
+  },
+  {
+    id: 'world3',
+    imgUrl: img1,
+    title: 'Kadirojo Permai',
+  },
+  {
+    id: 'world-4',
+    imgUrl: img1,
+    title: 'Paradise Island',
+  },
+  {
+    id: 'world-5',
+    imgUrl: img1,
+    title: 'Hawkins Labs',
+  },
+];
 
 export const themeColors = [
     {
