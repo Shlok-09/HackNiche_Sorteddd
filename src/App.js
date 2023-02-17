@@ -7,6 +7,7 @@ import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import './App.css';
 
 import { useStateContext } from './contexts/ContextProvider';
+import Kanban from './pages/Kanban';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
@@ -61,6 +62,9 @@ const App = () => {
             </div>
             <div>
               {themeSettings && (<ThemeSettings />)}
+              <Routes>
+                <Route path="/kanban" element={<Kanban />} />  
+              </Routes>
             </div>
             <Footer />
           </div>
