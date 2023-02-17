@@ -1,100 +1,97 @@
 import React from 'react'
 import Chatbot from "react-simple-chatbot"
-import { Segment } from 'semantic-ui-react'
+import { ThemeProvider } from 'styled-components';
+
+const config ={
+  width: "400px",
+  height: "500px", 
+};
+
+
+const theme = {
+  background: '#f5f8fb',
+  fontFamily: 'poppins',
+  headerBgColor: '#1D1D41',
+  headerFontColor: '#FBFBF3',
+  headerFontSize: '15px',
+  botBubbleColor: '#1D1D41',
+  botFontColor: '#FBFBF3',
+  userBubbleColor: '#141332',
+  userFontColor: '#fff',
+};
 
 const Chat = () => {
     const steps =[
         {
-
             id: "Greet",
-      
-            message: "Hello, Welcome to our shop",
-      
-            trigger: "Done",
-      
-          },
-      
-          {
-      
-            id: "Done",
-      
-            message: "Please enter your name!",
-      
+            message: "Hello, What is your Name?",
             trigger: "waiting1",
-      
-          },
-      
+        },
           {
-      
             id: "waiting1",
-      
-            user: true,
-      
-            trigger: "Name",
-      
+            user: true,      
+            trigger: "Name",      
           },
-      
           {
-      
             id: "Name",
-      
-            message: "Hi {previousValue}, Please select your issue",
-      
+            message: "Hi {previousValue}, What would you like to discuss about?",
             trigger: "issues",
-      
           },
-      
           {
-      
             id: "issues",
-      
             options: [
-      
               {
-      
-                value: "React",
-      
-                label: "React",
-      
-                trigger: "React",
-      
+                value: "Savings",
+                label: "Savings",
+                trigger: "Savings",
               },
-      
-              { value: "Angular", label: "Angular", trigger: "Angular" },
-      
+              { 
+                value: "Insurance", 
+                label: "Insurance", 
+                trigger: "Insurance" },
             ],
-      
           },
-      
           {
-      
-            id: "React",
-      
+            id: "Savings",
             message:
-      
-              "Thanks for letting your React issue, Our team will resolve your issue ASAP",
-      
-            end: true,
-      
+              "Okay! What percentage of your income are you currently saving?",
+            trigger: "waiting2",
           },
-      
           {
-      
-            id: "Angular",
-      
-            message:
-      
-              "Thanks for letting your Angular issue, Our team will resolve your issue ASAP",
-      
-            end: true,
-      
+            id: "waiting2",
+            user: true,      
+            trigger: "SolutionSavings",      
           },
+          {
+            id: "SolutionSavings",
+            message:
+              "Ok. Ideally, you should aim to save at least 20% of your income.",
+            end: true,
+          },
+          {
+            id: "Insurance",
+            message:
+              "Sure, I'm happy to help. What would you like to ask about insurance ?",
+              trigger: "waiting3",
+           },
+          {
+            id: "waiting3",
+            user: true,      
+            trigger: "SolutionInsurance",      
+          },
+          {
+            id: "SolutionInsurance",
+            message:
+              " Research the different types of insurance policies that are available and compare the coverage, costs, and benefits of each policy. Look for policies that align with your needs and budget.",
+            end: true,
+          },
+          {...config}
     ]
   return (
     <div >
-      <Segment floated='right'>
+      <ThemeProvider theme={theme}>
         <Chatbot steps={steps}/>
-      </Segment>
+      </ThemeProvider>
     </div>
   )
 }
