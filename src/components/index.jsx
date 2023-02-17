@@ -6,3 +6,5 @@ export { default as Navbar } from './Navbar';
 export { default as Footer } from './Footer';
 export { default as Header } from './Header';
 export { default as Kanban } from '../pages/Kanban';
+export { default as Calendar } from '../pages/Calendar';
+export { default as LineChart } from '../pages/Charts/LineChart';
