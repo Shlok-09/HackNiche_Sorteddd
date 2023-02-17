@@ -11,7 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <ContextProvider>
       {/* <Home /> */}
-      <Chat/>
+      {/* <Chat/> */}
       <App />
     </ContextProvider>
   </React.StrictMode>,
