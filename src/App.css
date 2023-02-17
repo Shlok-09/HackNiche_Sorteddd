@@ -1,5 +1,10 @@
 @import url('https://cdn.syncfusion.com/ej2/material.css');
 
+#root {
+  height: 100vh;
+  background-color: #141332;
+}
+
 .sidebar {
   box-shadow: rgb(113 122 131 / 11%) 0px 7px 30px 0px;
 }
