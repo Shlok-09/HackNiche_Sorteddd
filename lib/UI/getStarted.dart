@@ -22,10 +22,10 @@ class _GetStartedState extends State<GetStarted> {
           children: [
             Padding(
                 padding: EdgeInsets.fromLTRB(10, 250, 10, 10),
-              child: Image.asset('assets/logo.png')
+              child: Image.asset('assets/logo.png',scale: 0.5,)
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.fromLTRB(15,10,10,10),
               child: Text('Start your empowering journey with us in a few steps',
               style: GoogleFonts.poppins(
                 fontSize: 24,

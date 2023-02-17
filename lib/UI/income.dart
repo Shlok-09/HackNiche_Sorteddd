@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:hackniche_finance/UI/addTransaction.dart';
 import '../constants/constants.dart';
+import 'package:get/get.dart';
 
 class Income extends StatefulWidget {
   const Income({Key? key}) : super(key: key);
@@ -107,41 +108,58 @@ class _IncomeState extends State<Income> {
             //       return Container();
             //     }
             // )
-            Container(
-              height: 385,
-              child: ListView.builder(
-                itemCount: transactions.length,
-                  itemBuilder: (context,index){
-                  return Column(
-                    children: [
-                      Container(
-                        height: 80,
-                        padding: EdgeInsets.all(10),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color(0xff1D1D40),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            (transactions[index]['type']== 'expense') ? IncomeCard() : Outcome(),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('${transactions[index]['item']}',style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
-                                Text('${transactions[index]['date']}',style: GoogleFonts.poppins(fontSize: 15,color: Color(0xff8C89B4)),)
-                              ],
+            Stack(
+              children: [
+                SizedBox(
+                  height: 385,
+                  child: ListView.builder(
+                    itemCount: transactions.length,
+                      itemBuilder: (context,index){
+                      return Column(
+                        children: [
+                          Container(
+                            height: 80,
+                            padding: EdgeInsets.all(10),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: const Color(0xff1D1D40),
                             ),
-                            Text('${transactions[index]['cost']}',style: GoogleFonts.poppins(fontSize: 20,color: (transactions[index]['type']== 'expense') ?Colors.green:Colors.redAccent),)
-                          ]
-                        ),
-                      ),
-                      const SizedBox(height: 20,)
-                    ],
-                  );
-                  }
-              ),
+                            child: Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                (transactions[index]['type']== 'expense') ? IncomeCard() : Outcome(),
+                                SizedBox(width: 12,),
+                                Container(
+                                  width: 215,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('${transactions[index]['item']}',style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
+                                      Text('${transactions[index]['date']}',style: GoogleFonts.poppins(fontSize: 15,color: Color(0xff8C89B4)),)
+                                    ],
+                                  ),
+                                ),
+                                Text('${transactions[index]['cost']}',style: GoogleFonts.poppins(fontSize: 20,color: (transactions[index]['type']== 'expense') ?Colors.green:Colors.redAccent),)
+                              ]
+                            ),
+                          ),
+                          const SizedBox(height: 15,)
+                        ],
+                      );
+                      }
+                  ),
+                ),
+                Positioned(
+                  bottom: 30,
+                  right: 10,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.purpleAccent,
+                    minRadius: 25,
+                    child: Center(child: IconButton(icon: Icon(Icons.add,color: Colors.white,),onPressed: (){Get.to(AddTransactions());},)),
+                  )
+                )
+              ],
             )
           ],
         ),

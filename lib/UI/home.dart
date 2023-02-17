@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackniche_finance/UI/income.dart';
 import 'package:get/get.dart';
+import 'package:d_chart/d_chart.dart';
+import 'package:hackniche_finance/UI/plannings.dart';
+import 'package:hackniche_finance/UI/stock.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,10 +17,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late User? mFirebaseUser;
   late String name = 'Ayush';
+  CustomClipper<Rect>? clipper;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     mFirebaseUser = FirebaseAuth.instance.currentUser;
   }
@@ -41,11 +44,11 @@ class _HomePageState extends State<HomePage> {
                 // Image.asset('assets/')
               ],
             ),
-            const SizedBox(height: 15,),
+            const SizedBox(height: 13,),
             GestureDetector(
               onTap: (){
                 // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Income()));
-                Get.to(Income());
+                Get.to(const Income());
               },
               child: Container(
                 padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
@@ -95,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             //OUTCOME
             // Container(
             //   padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
@@ -139,9 +142,130 @@ class _HomePageState extends State<HomePage> {
             //     ],
             //   ),
             // )
-
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color(0xff1D1D41),
+              ),
+              padding: const EdgeInsets.fromLTRB(10, 15, 0, 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left:30,bottom: 10),
+                    child: Text('My Expenses',style: GoogleFonts.poppins(fontSize: 24,color: Colors.white),),
+                  ),
+                  AspectRatio(
+                    aspectRatio: 20 / 9,
+                    child: DChartPie(
+                      data: [
+                        {'domain': 'Food', 'measure': 38},
+                        {'domain': 'Clothing', 'measure': 37},
+                        {'domain': 'Extra', 'measure': 25},
+                        // {'domain': 'Cordova', 'measure': 15},
+                      ],
+                      donutWidth: 18,
+                      fillColor: (pieData, index) {
+                        switch (pieData['domain']) {
+                          case 'Food':
+                            return const Color(0xff64CFF6);
+                          case 'Clothing':
+                            return const Color(0xff6359E9);
+                          default:
+                            return Colors.purple.shade900;
+                        }
+                      },
+                      pieLabel: (pieData, index) {
+                        return "${pieData['domain']}-${pieData['measure']}%";
+                      },
+                      labelPosition: PieLabelPosition.outside,
+                      labelColor: Colors.white60,
+                      labelFontSize: 16,
+                      labelLineColor: Colors.red,
+                      strokeWidth: 2,
+                      animate: true,
+                      labelLineThickness: 2,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  flex:1,
+                  child: GestureDetector(
+                    onTap: (){
+                      Get.to(const MyPlannings());
+                    },
+                      child: homeCard(Icons.ac_unit,"My Plannings",Colors.lightBlueAccent)),
+                ),
+                const SizedBox(width: 15,),
+                Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: (){
+                      Get.to(Stock());
+                    },
+                      child: homeCard(Icons.abc,"Stock",Colors.lightGreenAccent)),
+                )
+              ],
+            ),
+            const SizedBox(height: 10,),
+            Row(
+              children: [
+                Expanded(
+                  flex:1,
+                  child: homeCard(Icons.ac_unit,"Government \nPolicies",Colors.lightBlueAccent),
+                ),
+                const SizedBox(width: 15,),
+                Expanded(
+                  flex: 1,
+                  child: homeCard(Icons.abc,"Saving \nStrategies",Colors.lightGreenAccent),
+                )
+              ],
+            )
           ],
         )
+    );
+  }
+
+  Widget homeCard(IconData icon,String text, Color color) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+        height: 130,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: const Color(0xff1D1D40)
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Container(height: 130,width: 5,color: color,)
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left:10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(icon,color: color,),
+                      Text(text,style: GoogleFonts.poppins(fontSize: 24,color: Colors.white),),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ]
+        ),
+      ),
     );
   }
 }
