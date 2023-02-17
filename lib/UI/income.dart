@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackniche_finance/UI/addTransaction.dart';
 import '../constants/constants.dart';
 import 'package:get/get.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class Income extends StatefulWidget {
   const Income({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class Income extends StatefulWidget {
 }
 
 class _IncomeState extends State<Income> {
+  late User? mFirebaseUser;
+  late DatabaseReference databaseRef;
   List transactions = [
     {'item': 'Nike Air Max 2090','date':'15 Aug 2022','cost':'\$243.00','type':'expense'},
     {'item': 'Salary','date':'15 Aug 2022','cost':'\$243.00','type':'income'},
@@ -19,6 +23,13 @@ class _IncomeState extends State<Income> {
     {'item': 'Salary','date':'15 Aug 2022','cost':'\$243.00','type':'income'},
     {'item': 'Salary','date':'15 Aug 2022','cost':'\$243.00','type':'income'},
   ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    mFirebaseUser = FirebaseAuth.instance.currentUser;
+    databaseRef = FirebaseDatabase.instance.ref().child(mFirebaseUser!.uid);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

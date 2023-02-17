@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get/get.dart';
+import 'package:hackniche_finance/UI/income.dart';
 
 class AddTransactions extends StatefulWidget {
   const AddTransactions({Key? key}) : super(key: key);
@@ -10,6 +12,10 @@ class AddTransactions extends StatefulWidget {
 
 class _AddTransactionsState extends State<AddTransactions> {
   final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _costController = TextEditingController();
+  final TextEditingController _typeController = TextEditingController();
+
   final _key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -47,7 +53,7 @@ class _AddTransactionsState extends State<AddTransactions> {
                       borderRadius: BorderRadius.circular(20)
                   ),
                   child: TextFormField(
-                    controller: _titleController,
+                    controller: _dateController,
                     decoration: InputDecoration(
                       hintText: 'Enter date(1 Jan 2022)',
                       hintStyle: GoogleFonts.poppins(fontSize: 24,color: Colors.blueGrey),
@@ -62,7 +68,7 @@ class _AddTransactionsState extends State<AddTransactions> {
                       borderRadius: BorderRadius.circular(20)
                   ),
                   child: TextFormField(
-                    controller: _titleController,
+                    controller: _costController,
                     decoration: InputDecoration(
                       hintText: 'Enter transaction cost',
                       hintStyle: GoogleFonts.poppins(fontSize: 24,color: Colors.blueGrey),
@@ -77,7 +83,7 @@ class _AddTransactionsState extends State<AddTransactions> {
                       borderRadius: BorderRadius.circular(20)
                   ),
                   child: TextFormField(
-                    controller: _titleController,
+                    controller: _typeController,
                     decoration: InputDecoration(
                       hintText: 'Enter type(expense/income)',
                       hintStyle: GoogleFonts.poppins(fontSize: 24,color: Colors.blueGrey),
@@ -89,7 +95,10 @@ class _AddTransactionsState extends State<AddTransactions> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Color(0xff6359E9))
                   ),
-                    onPressed: (){},
+                    onPressed: (){
+                    //TODO: Add to firebase
+                    Get.to(const Income());
+                    },
                     child: Text('Submit',style: GoogleFonts.poppins(fontSize: 24,color: Colors.white)
                   ,))
               ],
