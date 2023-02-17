@@ -1,30 +1,100 @@
-import React, { useState } from 'react';
+// import React from 'react'
+// import Chatbot from "react-simple-chatbot"
+// import { Segment } from 'semantic-ui-react'
+// const  steps = [
+//   {
 
-function Chatbot() {
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
+//     id: "Greet",
 
-  const handleInputChange = (event) => {
-    setInput(event.target.value);
-  };
+//     message: "Hello, Welcome to our shop",
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-    setMessages([...messages, input]);
-    setInput('');
-  };
+//     trigger: "Done",
 
-  return (
-    <div>
-      {messages.map((message, index) => (
-        <div key={index}>{message}</div>
-      ))}
-      <form onSubmit={handleFormSubmit}>
-        <input type="text" value={input} onChange={handleInputChange} />
-        <button type="submit">Send</button>
-      </form>
-    </div>
-  );
-}
+//   },
 
-export default Chatbot;
+//   {
+
+//     id: "Done",
+
+//     message: "Please enter your name!",
+
+//     trigger: "waiting1",
+
+//   },
+
+//   {
+
+//     id: "waiting1",
+
+//     user: true,
+
+//     trigger: "Name",
+
+//   },0
+
+//   {
+
+//     id: "Name",
+
+//     message: "Hi {previousValue}, Please select your issue",
+
+//     trigger: "issues",
+
+//   },
+
+//   {
+
+//     id: "issues",
+
+//     options: [
+
+//       {
+
+//         value: "React",
+
+//         label: "React",
+
+//         trigger: "React",
+
+//       },
+
+//       { value: "Angular", label: "Angular", trigger: "Angular" },
+
+//     ],
+
+//   },
+
+//   {
+
+//     id: "React",
+
+//     message:
+
+//       "Thanks for letting your React issue, Our team will resolve your issue ASAP",
+
+//     end: true,
+
+//   },
+//   {
+
+//     id: "Angular",
+//     message:
+
+//       "Thanks for letting your Angular issue, Our team will resolve your issue ASAP",
+
+//     end: true,
+
+//   },
+// ]
+// const Chatbot = () => {
+  
+//   return (
+//     <div>
+//       <Segment floated='right'>
+//         <Chatbot steps={steps}/>
+//       </Segment>
+//     </div>
+//   )
+// }
+
+// export default Chatbot

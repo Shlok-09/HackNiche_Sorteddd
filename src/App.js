@@ -14,6 +14,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Finance from './pages/Finance';
 import Chatbot from './components/Chatbot';
+import Insurance from './pages/Insurance';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
@@ -74,6 +75,7 @@ const App = () => {
                 <Route path="/line" element={<Line />} />
                 <Route path="/Expenses" element={<Finance />} />
                 <Route path="/chatbot" element={<Chatbot />} />
+                <Route path="/insurance" element={<Insurance />} />
               </Routes>
             </div>
             <Footer />
