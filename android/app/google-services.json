@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "476529227768",
+    "project_id": "hackniche-finance",
+    "storage_bucket": "hackniche-finance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476529227768:android:df2731e7b37ca4ad1e480d",
+        "android_client_info": {
+          "package_name": "com.example.hackniche_finance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476529227768-1t37ut28r4i637vudr3ju9tkq80f49ur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hackniche_finance",
+            "certificate_hash": "2bf99cb2fea39695e4d52729a0472aaec0c4d532"
+          }
+        },
+        {
+          "client_id": "476529227768-krq6h720iti0rt2kvsl5oardr20lrbao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKSzRRlV8A083j70iPQDsLPA15jaTBWt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "476529227768-2lmi2su0hejvcg1vifuqs955feumdb3t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
