@@ -10,10 +10,16 @@ import { useStateContext } from './contexts/ContextProvider';
 import Kanban from './pages/Kanban';
 import Calendar from './pages/Calendar';
 import Line from './pages/Charts/LineChart';
-import Login from './components/Login';
-import Signup from './components/Signup';
 import Finance from './pages/Finance';
 import Chatbot from './components/Chatbot';
+import Home from './Home';
+import Insurance from './pages/Insurance';
+import Loan from './pages/Loan';
+import Policy from './pages/Policy';
+import Bond from './pages/Bond';
+import MutualFunds from './pages/MutualFunds';
+import Crypto from './pages/Crypto';
+import Stocks from './pages/Stocks';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
@@ -26,7 +32,6 @@ const App = () => {
       setCurrentMode(currentThemeMode);
     }
   }, []);
-
   return (
     <div className={currentMode === 'Dark' ? 'dark' : ''}>
       <BrowserRouter>
@@ -74,8 +79,15 @@ const App = () => {
                 <Route path="/line" element={<Line />} />
                 <Route path="/Expenses" element={<Finance />} />
                 <Route path="/chatbot" element={<Chatbot />} />
+                <Route path="/insurance" element={<Insurance />} />
+                <Route path="/loan" element={<Loan />} />
+                <Route path="/policy" element={<Policy />} />
+                <Route path="/bond" element={<Bond />} />
+                <Route path="/mutualfunds" element={<MutualFunds />} />
+                <Route path="/crypto" element={<Crypto />} />
+                <Route path="/stocks" element={<Stocks />} />
               </Routes>
-            </div>
+            </div>         
             <Footer />
           </div>
         </div>

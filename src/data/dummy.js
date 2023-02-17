@@ -12,6 +12,12 @@ import { GiLouvrePyramid } from 'react-icons/gi';
 import { GrLocation } from 'react-icons/gr';
 import img1 from '../data/img1.png'
 
+export const startingFeatures = [
+  'Find a world that suits you and you want to enter',
+  'Enter the world by reading basmalah to be safe',
+  'No need to beat around the bush, just stay on the gas and have fun',
+];
+
 export const exploreWorlds = [
   {
     id: 'world1',
@@ -734,37 +740,33 @@ export const links = [
       title: 'Charts',
       links: [
         {
-          name: 'line',
+          name: 'insurance',
           icon: <AiOutlineStock />,
         },
         {
-          name: 'area',
+          name: 'loan',
           icon: <AiOutlineAreaChart />,
         },
   
         {
-          name: 'bar',
+          name: 'policy',
           icon: <AiOutlineBarChart />,
         },
         {
-          name: 'pie',
+          name: 'bond',
           icon: <FiPieChart />,
         },
         {
-          name: 'financial',
+          name: 'mutualfunds',
           icon: <RiStockLine />,
         },
         {
-          name: 'color-mapping',
+          name: 'crypto',
           icon: <BsBarChart />,
         },
         {
-          name: 'pyramid',
+          name: 'stocks',
           icon: <GiLouvrePyramid />,
-        },
-        {
-          name: 'stacked',
-          icon: <AiOutlineBarChart />,
         },
       ],
     },
