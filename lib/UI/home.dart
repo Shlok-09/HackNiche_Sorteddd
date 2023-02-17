@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hackniche_finance/UI/income.dart';
@@ -17,16 +20,36 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   late User? mFirebaseUser;
   late String name = 'Ayush';
+  late DatabaseReference _databaseReference = FirebaseDatabase.instance.ref();
   CustomClipper<Rect>? clipper;
+  late int balance;
+  bool isLoading = false;
+  late var food,extra,cloth;
+  late int income,expense;
 
+  Future<void> fetch() async{
+    isLoading = true;
+    // balance = (await _databaseReference.child(mFirebaseUser!.uid).child('balance').once()).snapshot.value.toString();
+    food = (await _databaseReference.child(mFirebaseUser!.uid).child('expense').child('food').once()).snapshot.value as int;
+    extra = (await _databaseReference.child(mFirebaseUser!.uid).child('expense').child('extra').once()).snapshot.value as int;
+    cloth = (await _databaseReference.child(mFirebaseUser!.uid).child('expense').child('clothing').once()).snapshot.value as int;
+    income = (await _databaseReference.child(mFirebaseUser!.uid).child('income').once()).snapshot.value as int;
+    expense = (await _databaseReference.child(mFirebaseUser!.uid).child('totalExpense').once()).snapshot.value as int;
+    balance = income - expense;
+    setState(() {
+      isLoading = false;
+    });
+    print("balance: ${balance.toString()}");
+  }
   @override
   void initState() {
     super.initState();
     mFirebaseUser = FirebaseAuth.instance.currentUser;
+    fetch();
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return !isLoading? Container(
       padding: const EdgeInsets.all(10),
         child: Column(
           children: [
@@ -67,7 +90,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("My Balance",style: GoogleFonts.poppins(color: const Color(0xff8C89B4),fontSize: 25)),
-                          Text("\$632.000",style: GoogleFonts.poppins(color: Colors.white,fontSize: 25)),
+                          Text("\₹${balance.toString()}",style: GoogleFonts.poppins(color: Colors.white,fontSize: 25)),
                           Stack(
                             children: [
                               Image.asset('assets/Rectangle 34.png',scale: 0.9,),
@@ -99,49 +122,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 10),
-            //OUTCOME
-            // Container(
-            //   padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(20),
-            //     color: const Color(0xff1D1D40),
-            //   ),
-            //   height:150,
-            //   width: double.infinity,
-            //   child: Row(
-            //     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //     children: [
-            //       Stack(
-            //         children: [
-            //           Image.asset('assets/Rectangle.png',scale: 0.65,),
-            //           Padding(
-            //             padding: const EdgeInsets.all(25.0),
-            //             child: Image.asset('assets/Arrow.png'),
-            //           ),
-            //
-            //         ],
-            //       ),
-            //       const SizedBox(width: 15,),
-            //       Column(
-            //         crossAxisAlignment: CrossAxisAlignment.start,
-            //         children: [
-            //           Container(height:20),
-            //           Text("Total Outcome",style: GoogleFonts.poppins(color: const Color(0xff8C89B4),fontSize: 25)),
-            //           Text("-\$632.000",style: GoogleFonts.poppins(color: Colors.white,fontSize: 25)),
-            //         ],
-            //       ),
-            //       const SizedBox(width: 15),
-            //       Stack(
-            //         children: [
-            //           Image.asset('assets/Rectangle 35.png',scale: 0.9,),
-            //           const Padding(padding: EdgeInsets.fromLTRB(10, 3, 0, 0),child: Text('+1.29%',style: TextStyle(
-            //             color: Colors.redAccent,
-            //           ),),)
-            //         ],
-            //       )
-            //     ],
-            //   ),
-            // )
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
@@ -159,10 +139,9 @@ class _HomePageState extends State<HomePage> {
                     aspectRatio: 20 / 9,
                     child: DChartPie(
                       data: [
-                        {'domain': 'Food', 'measure': 38},
-                        {'domain': 'Clothing', 'measure': 37},
-                        {'domain': 'Extra', 'measure': 25},
-                        // {'domain': 'Cordova', 'measure': 15},
+                        {'domain': 'Food', 'measure': food},
+                        {'domain': 'Clothing', 'measure': cloth},
+                        {'domain': 'Extra', 'measure': extra},
                       ],
                       donutWidth: 18,
                       fillColor: (pieData, index) {
@@ -199,7 +178,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: (){
                       Get.to(const MyPlannings());
                     },
-                      child: homeCard(Icons.ac_unit,"My Plannings",Colors.lightBlueAccent)),
+                      child: homeCard(AssetImage('assets/Vector_save.png'),"My Plannings",Colors.lightBlueAccent)),
                 ),
                 const SizedBox(width: 15,),
                 Expanded(
@@ -208,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: (){
                       Get.to(Stock());
                     },
-                      child: homeCard(Icons.abc,"Stock",Colors.lightGreenAccent)),
+                      child: homeCard(AssetImage('assets/Vector.png'),"Stock",Colors.lightGreenAccent)),
                 )
               ],
             ),
@@ -217,21 +196,21 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   flex:1,
-                  child: homeCard(Icons.ac_unit,"Government \nPolicies",Colors.lightBlueAccent),
+                  child: homeCard(AssetImage('assets/image 2.png'),"Government \nPolicies",Colors.lightBlueAccent),
                 ),
                 const SizedBox(width: 15,),
                 Expanded(
                   flex: 1,
-                  child: homeCard(Icons.abc,"Saving \nStrategies",Colors.lightGreenAccent),
+                  child: homeCard(AssetImage('assets/image 3.png',),"Saving \nStrategies",Colors.lightGreenAccent),
                 )
               ],
             )
           ],
         )
-    );
+    ): const Center(child: CircularProgressIndicator());
   }
 
-  Widget homeCard(IconData icon,String text, Color color) {
+  Widget homeCard(var icon,String text, Color color) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Container(
@@ -256,7 +235,7 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(icon,color: color,),
+                      ImageIcon(icon,color: color),
                       Text(text,style: GoogleFonts.poppins(fontSize: 24,color: Colors.white),),
                     ],
                   ),

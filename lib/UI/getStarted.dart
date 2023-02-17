@@ -20,9 +20,12 @@ class _GetStartedState extends State<GetStarted> {
           // mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-                padding: EdgeInsets.fromLTRB(10, 250, 10, 10),
-              child: Image.asset('assets/logo.png',scale: 0.5,)
+            Hero(
+              tag: 'logo',
+              child: Padding(
+                  padding: const EdgeInsets.fromLTRB(10, 250, 10, 10),
+                child: Image.asset('assets/logo.png',scale: 0.5,)
+              ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(15,10,10,10),
@@ -32,12 +35,12 @@ class _GetStartedState extends State<GetStarted> {
                 color: Colors.white
               ),),
             ),
-            SizedBox(height:50),
+            const SizedBox(height:50),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: ElevatedButton(
                 onPressed: (){
-                  Get.to(Wrapper());
+                  Get.to(const Wrapper());
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(const Color(0xff6359E9))),

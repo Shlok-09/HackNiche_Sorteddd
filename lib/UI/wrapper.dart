@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hackniche_finance/UI/bottomBar.dart';
 import 'package:hackniche_finance/UI/getStarted.dart';
+import 'package:hackniche_finance/UI/login.dart';
 import 'package:hackniche_finance/UI/signUp.dart';
 import 'package:hackniche_finance/UI/changeLang.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class Wrapper extends StatelessWidget {
     final user = Provider.of<User?>(context);
 
     if(user == null) {
-      return const SignUp();
+      return const LoginPage();
     }
     return const BottomBarStart();
   }

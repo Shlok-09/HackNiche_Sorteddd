@@ -51,4 +51,14 @@ class AuthService {
     }
   }
 
+  Future<User?> signIpWithEmailPassword(String email, String pass) async {
+    try {
+      User? user = (await _auth.signInWithEmailAndPassword(email: email, password: pass)).user;
+      return user;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
 }
