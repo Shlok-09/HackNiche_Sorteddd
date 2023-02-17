@@ -14,6 +14,7 @@ class _GetStartedState extends State<GetStarted> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xff141332),
       body: Container(
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
@@ -26,8 +27,9 @@ class _GetStartedState extends State<GetStarted> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text('Start your empowering journey with us in a few steps',
-              style: GoogleFonts.aBeeZee(
-                fontSize: 24
+              style: GoogleFonts.poppins(
+                fontSize: 24,
+                color: Colors.white
               ),),
             ),
             SizedBox(height:50),
@@ -38,7 +40,7 @@ class _GetStartedState extends State<GetStarted> {
                   Get.to(Wrapper());
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(const Color(0xff1B1626))),
+                  backgroundColor: MaterialStateProperty.all(const Color(0xff6359E9))),
                 child: const Text("Get Started"),
               )
             ),

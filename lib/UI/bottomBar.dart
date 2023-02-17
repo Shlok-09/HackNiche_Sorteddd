@@ -27,8 +27,8 @@ class _BottomBarStartState extends State<BottomBarStart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false),
-      body: pages[_selectedIndex],
+      backgroundColor: const Color(0xff141332),
+      body: SafeArea(child: pages[_selectedIndex]),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (curentIndex){
           setState(() {
