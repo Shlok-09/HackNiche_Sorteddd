@@ -24,6 +24,7 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import Account from './components/Account';
 import ProtectedRoute from './components/ProtectedRoute';
+import UserInfo from './pages/UserInfo';
 // import Login from './components/Login/Login';
 // import Signup from './components/Signup';
 
@@ -31,6 +32,7 @@ const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
   // const currentUser = 'ayushShah123';
   // const [currUser,setCurrUser] = useAuth(currentUser);
+  const [age,setAge] = useState(0);
   useEffect(() => {
     const currentThemeColor = localStorage.getItem('colorMode');
     const currentThemeMode = localStorage.getItem('themeMode');
@@ -88,15 +90,16 @@ const App = () => {
                 <Route path="/Expenses" element={<Finance />} />
                 <Route path="/chatbot" element={<Chat />} />
                 <Route path="/insurance" element={<Insurance />} />
-                <Route path="/loan" element={<Loan />} />
+                <Route path="/loan" element={<Loan age={age} setAge={setAge}/>} />
                 <Route path="/policy" element={<Policy />} />
                 <Route path="/bond" element={<Bond />} />
                 <Route path="/mutualfunds" element={<MutualFunds />} />
                 <Route path="/crypto" element={<Crypto />} />
                 <Route path="/stocks" element={<Stocks />} />
-                <Route path='/login' element={<Login/>} />
+                <Route path='/login' element={<Login age={age} setAge={setAge}/>} />
                 <Route path='/' element={<Home/>} />
-                <Route path='/signup' element={<Signup/>} />
+                <Route path='/signup' element={<Signup />} />
+                <Route path='/userinfo' element={<UserInfo age={age} setAge={setAge}/>} />
                 <Route
             path='/account'
             element={
