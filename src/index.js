@@ -12,9 +12,9 @@ import Signup from './components/Signup';
 ReactDOM.render(
   <React.StrictMode>
     <ContextProvider>
-      {/* <Home /> */}
+      <Home />
       {/* <Chat/> */}
-      <App />
+      {/* <App /> */}
     </ContextProvider>
   </React.StrictMode>,
   document.getElementById('root'),
