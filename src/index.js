@@ -11,9 +11,9 @@ import Signup from './components/Signup';
 ReactDOM.render(
   <React.StrictMode>
       <ContextProvider>
-      <App />
+      {/* <App /> */}
       
-      {/* <Home /> */}
+      <Home />
       
       </ContextProvider>
   </React.StrictMode>,
