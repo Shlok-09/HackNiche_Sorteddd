@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-
+import { useAuth } from './contexts/AuthContext';
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import './App.css';
-
 import { useStateContext } from './contexts/ContextProvider';
 import Kanban from './pages/Kanban';
 import Calendar from './pages/Calendar';
@@ -20,10 +19,13 @@ import Bond from './pages/Bond';
 import MutualFunds from './pages/MutualFunds';
 import Crypto from './pages/Crypto';
 import Stocks from './pages/Stocks';
+// import Login from './components/Login/Login';
+// import Signup from './components/Signup';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
-
+  // const currentUser = 'ayushShah123';
+  // const [currUser,setCurrUser] = useAuth(currentUser);
   useEffect(() => {
     const currentThemeColor = localStorage.getItem('colorMode');
     const currentThemeMode = localStorage.getItem('themeMode');
@@ -86,6 +88,8 @@ const App = () => {
                 <Route path="/mutualfunds" element={<MutualFunds />} />
                 <Route path="/crypto" element={<Crypto />} />
                 <Route path="/stocks" element={<Stocks />} />
+                {/* <Route path='/login' element={<Login setCurrUser={setCurrUser}/>} /> */}
+                {/* <Route exact path='/signup' element={<Signup setCurrUser={setCurrUser}/>} /> */}
               </Routes>
             </div>         
             <Footer />
