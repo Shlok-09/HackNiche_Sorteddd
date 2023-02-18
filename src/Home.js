@@ -53,7 +53,7 @@ export default function Home() {
     }
   }
   return (
-    <Wrapper>
+    <Wrapper className='h-screen'>
       <Spline scene="https://prod.spline.design/NLaYeZL3WV8muZ0Z/scene.splinecode" />
       <Social>
       </Social>
@@ -74,7 +74,7 @@ export default function Home() {
         <TrackVisibility>
             {({ isVisible }) =>
             <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-              <h1>{`Welcome`} <span className="txt-rotate" dataperiod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1>
+              <h1>{`Welcome`} <span className="txt-rotate" dataperiod="1000" data-rotate='[ "Savings", "Insurances", "Policies" ]'><span className="wrap">{text}</span></span></h1>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
             </div>}
           </TrackVisibility>
@@ -133,9 +133,12 @@ const Wrapper = styled.div`
 const Content = styled.div`
   position: absolute;
   top: 30px;
-  width: 100%;
+  width: auto;
+  height: 100%;
+  background-image:cover;
   padding-bottom: 100px;
   pointer-events: none;
+
 
   display: flex;
   flex-direction: column;
