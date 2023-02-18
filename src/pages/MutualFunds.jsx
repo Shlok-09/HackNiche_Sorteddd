@@ -2,7 +2,9 @@ import React from 'react'
 
 const MutualFunds = () => {
   return (
-    <div>MutualFunds</div>
+    <div>
+      MutualFunds
+    </div>
   )
 }
 
