@@ -20,12 +20,12 @@ import MutualFunds from './pages/MutualFunds';
 import Crypto from './pages/Crypto';
 import Stocks from './pages/Stocks';
 import Chat from './components/Chatbot';
-// import Login from './components/Login/Login';
+import Login from './components/Login/Login';
 // import Signup from './components/Signup';
 
 const App = () => {
   const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
-  // const currentUser = 'ayushShah123';
+  const currentUser = 'ayushShah123';
   // const [currUser,setCurrUser] = useAuth(currentUser);
   useEffect(() => {
     const currentThemeColor = localStorage.getItem('colorMode');
@@ -80,7 +80,7 @@ const App = () => {
                 <Route path="/kanban" element={<Kanban />} />  
                 <Route path="/calendar" element={<Calendar />} />
                 <Route path="/line" element={<Line />} />
-                <Route path="/Expenses" element={<Finance />} />
+                <Route path="/" element={<Finance />} />
                 <Route path="/chatbot" element={<Chat />} />
                 <Route path="/insurance" element={<Insurance />} />
                 <Route path="/loan" element={<Loan />} />
@@ -89,7 +89,7 @@ const App = () => {
                 <Route path="/mutualfunds" element={<MutualFunds />} />
                 <Route path="/crypto" element={<Crypto />} />
                 <Route path="/stocks" element={<Stocks />} />
-                {/* <Route path='/login' element={<Login setCurrUser={setCurrUser}/>} /> */}
+                <Route path='/login' element={<Login setCurrUser={setCurrUser}/>} />
                 {/* <Route exact path='/signup' element={<Signup setCurrUser={setCurrUser}/>} /> */}
               </Routes>
             </div>         

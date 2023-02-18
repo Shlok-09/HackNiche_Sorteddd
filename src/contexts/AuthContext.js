@@ -9,7 +9,8 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState()
+  const [currentUser, setCurrentUser] = useState('')
+  const [currUser,setCurrUser] = useState('')
   const [loading, setLoading] = useState(true)
 
   async function signup(email, password) {
@@ -48,6 +49,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   const value = {
+    currUser,
     currentUser,
     login,
     signup,

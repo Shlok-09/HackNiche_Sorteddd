@@ -13,7 +13,6 @@ ReactDOM.render(
   <React.StrictMode>
     <ContextProvider>
       {/* <Home /> */}
-      <Chat/>
       <App />
     </ContextProvider>
   </React.StrictMode>,

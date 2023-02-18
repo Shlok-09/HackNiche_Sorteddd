@@ -1,12 +1,8 @@
 import React from 'react'
 import Chatbot from "react-simple-chatbot"
 import { ThemeProvider } from 'styled-components';
-
-const config ={
-  width: "400px",
-  height: "500px", 
-};
-
+import { Button } from '.';
+import { MdOutlineCancel } from 'react-icons/md';
 
 const theme = {
   background: '#f5f8fb',
@@ -85,13 +81,23 @@ const Chat = () => {
               " Research the different types of insurance policies that are available and compare the coverage, costs, and benefits of each policy. Look for policies that align with your needs and budget.",
             end: true,
           },
-          {...config}
+          
     ]
+    
   return (
-    <div >
+    <div className="nav-item absolute right-1 top-16 bg-[#FBFBF3] dark:bg-[#FBFBF3] rounded-lg w-94">
+      <div className="flex justify-between items-center">
       <ThemeProvider theme={theme}>
+        <Button
+          icon={<MdOutlineCancel />}
+          color="rgb(153, 171, 180)"
+          bgHoverColor="light-gray"
+          size="2xl"
+          borderRadius="50%"
+        />
         <Chatbot steps={steps}/>
       </ThemeProvider>
+      </div>
     </div>
   )
 }

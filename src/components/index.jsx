@@ -7,3 +7,5 @@ export { default as Header } from './Header';
 export { default as Kanban } from '../pages/Kanban';
 export { default as Calendar } from '../pages/Calendar';
 export { default as LineChart } from '../pages/Charts/LineChart';
+export { default as UserProfile } from './UserProfile';
+export { default as Chat } from './Chatbot'
