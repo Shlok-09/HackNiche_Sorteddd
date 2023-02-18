@@ -6,6 +6,8 @@ import App from './App';
 import { ContextProvider } from './contexts/ContextProvider';
 import Chat from './components/Chatbot';
 import Home from './Home';
+import Signup from './components/Signup';
+
 
 ReactDOM.render(
   <React.StrictMode>
