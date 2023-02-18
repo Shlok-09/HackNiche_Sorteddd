@@ -17,7 +17,7 @@ export default function Home() {
   const [text, setText] = useState('');
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const [index, setIndex] = useState(1);
-  const toRotate = [ "Web Developer", "Web Designer", "UI/UX Designer" ];
+  const toRotate = [ "Savings", "Insurances", "Policies" ];
   const period = 2000;
 
   useEffect(() => {
@@ -74,8 +74,8 @@ export default function Home() {
         <TrackVisibility>
             {({ isVisible }) =>
             <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-              <h1>{`Welcome`} <span className="txt-rotate" dataperiod="1000" data-rotate='[ "Savings", "Insurances", "Policies" ]'><span className="wrap">{text}</span></span></h1>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+              <h1>{`Solutions to`} <span className="txt-rotate" dataperiod="1000" data-rotate='[ "Savings", "Insurances", "Policies" ]'><span className="wrap tracking-tight">{text}</span></span></h1>
+                <p>SecurePocket.ai is a solution to all your financial support. Login And track all your expenses and get suggestions which is the perfect one for you.</p>
             </div>}
           </TrackVisibility>
         {/* <h1>Collaborate with people</h1>
@@ -85,7 +85,7 @@ export default function Home() {
           sharing and storing unlimited media files. A world of topics is
           waiting for you. Join the private beta.
         </p> */}
-        <button className='p-3 bg-background-dark-bg text-white'>
+        <button className='p-6 bg-secondary-dark-bg text-white'>
           Download Our App
         </button>
       </Content>
