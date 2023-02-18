@@ -1,13 +1,13 @@
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hackniche_finance/UI/govpolicies.dart';
 import 'package:hackniche_finance/UI/income.dart';
 import 'package:get/get.dart';
 import 'package:d_chart/d_chart.dart';
 import 'package:hackniche_finance/UI/plannings.dart';
+import 'package:hackniche_finance/UI/savingScheme.dart';
 import 'package:hackniche_finance/UI/stock.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,12 +30,35 @@ class _HomePageState extends State<HomePage> {
   Future<void> fetch() async{
     isLoading = true;
     // balance = (await _databaseReference.child(mFirebaseUser!.uid).child('balance').once()).snapshot.value.toString();
-    food = (await _databaseReference.child(mFirebaseUser!.uid).child('expense').child('food').once()).snapshot.value as int;
-    extra = (await _databaseReference.child(mFirebaseUser!.uid).child('expense').child('extra').once()).snapshot.value as int;
-    cloth = (await _databaseReference.child(mFirebaseUser!.uid).child('expense').child('clothing').once()).snapshot.value as int;
-    income = (await _databaseReference.child(mFirebaseUser!.uid).child('income').once()).snapshot.value as int;
-    expense = (await _databaseReference.child(mFirebaseUser!.uid).child('totalExpense').once()).snapshot.value as int;
-    balance = income - expense;
+    try {
+      food =
+      (await _databaseReference.child(mFirebaseUser!.uid).child('expense')
+          .child('food')
+          .once()).snapshot.value as int;
+      extra =
+      (await _databaseReference.child(mFirebaseUser!.uid).child('expense')
+          .child('extra')
+          .once()).snapshot.value as int;
+      cloth =
+      (await _databaseReference.child(mFirebaseUser!.uid).child('expense')
+          .child('clothing')
+          .once()).snapshot.value as int;
+      income = (await _databaseReference.child(mFirebaseUser!.uid)
+          .child('income')
+          .once()).snapshot.value as int;
+      expense = (await _databaseReference.child(mFirebaseUser!.uid)
+          .child('totalExpense')
+          .once()).snapshot.value as int;
+      balance = income - expense;
+    } catch(e){
+      print(e);
+      food = 38;
+      extra = 25;
+      cloth = 18;
+      income = 10000;
+      expense = 5000;
+      balance = income - expense;
+    }
     setState(() {
       isLoading = false;
     });
@@ -54,9 +77,10 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 5,),
                     const Text('Welcome Back,',style: TextStyle(fontSize: 19,color: Color(0xffA6A6A6)),),
@@ -64,6 +88,11 @@ class _HomePageState extends State<HomePage> {
                     Text('$name 👋',style: const TextStyle(fontSize: 24,color: Colors.white),)
                   ],
                 ),
+                CircleAvatar(
+                  minRadius: 20,
+                  child: Image.asset('assets/Mask group.png')
+                )
+                // Image.asset('assets/homephotos.png')
                 // Image.asset('assets/')
               ],
             ),
@@ -107,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                       child: Stack(
                         children: [
-                          Image.asset('assets/Rectangle.png',scale: 0.65,),
+                          Image.asset('assets/Rectangle_blue.png',scale: 0.65,),
                           Padding(
                             padding: const EdgeInsets.all(25.0),
                             child: Image.asset('assets/Arrow.png'),
@@ -196,12 +225,16 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Expanded(
                   flex:1,
-                  child: homeCard(AssetImage('assets/image 2.png'),"Government \nPolicies",Colors.lightBlueAccent),
+                  child: GestureDetector(
+                    onTap: ()=>Get.to(GovPolicies()),
+                      child: homeCard(AssetImage('assets/image 2.png'),"Government \nPolicies",Colors.lightBlueAccent)),
                 ),
                 const SizedBox(width: 15,),
                 Expanded(
                   flex: 1,
-                  child: homeCard(AssetImage('assets/image 3.png',),"Saving \nStrategies",Colors.lightGreenAccent),
+                  child: GestureDetector(
+                    onTap: ()=>Get.to(SavingScheme()),
+                      child: homeCard(AssetImage('assets/image 3.png',),"Saving \nStrategies",Colors.lightGreenAccent)),
                 )
               ],
             )

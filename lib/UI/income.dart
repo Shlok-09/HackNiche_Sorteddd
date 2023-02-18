@@ -22,14 +22,29 @@ class _IncomeState extends State<Income> {
   bool isLoading = true;
 
   Future fetch() async{
-    dynamic result = (await databaseRef.child(mFirebaseUser!.uid).child('transactions').once()).snapshot.value;
-    print(result![1]);
-    income = (await databaseRef.child(mFirebaseUser!.uid).child('income').once()).snapshot.value.toString();
-    expense = (await databaseRef.child(mFirebaseUser!.uid).child('totalExpense').once()).snapshot.value.toString();
-    setState(() {
-      isLoading = false;
-    });
-    print(income);
+    dynamic result;
+    try {
+      result = (await databaseRef.child(mFirebaseUser!.uid).child(
+          'transactions').once()).snapshot.value;
+      print(result![0]);
+      income =
+          (await databaseRef.child(mFirebaseUser!.uid).child('income').once())
+              .snapshot.value.toString();
+      expense = (await databaseRef.child(mFirebaseUser!.uid)
+          .child('totalExpense')
+          .once()).snapshot.value.toString();
+      setState(() {
+        isLoading = false;
+      });
+      print(income);
+    } catch(e) {
+      income = "0";
+      expense = "0";
+      setState(() {
+        isLoading = false;
+      });
+      result = [];
+    }
     return result;
 }
   @override
@@ -127,63 +142,68 @@ class _IncomeState extends State<Income> {
             const SizedBox(height: 15,),
             Text("Transactions",style: GoogleFonts.poppins(fontSize: 25,color: Colors.white),),
             const SizedBox(height: 10),
-            Stack(
-              children: [
-                SizedBox(
-                  height: 385,
-                  child: FutureBuilder(
-                    future: fetch(),
-                      builder: (context,snapshot){
-                      return snapshot.hasData? ListView.builder(
-                              itemCount: snapshot.data.length,
-                              itemBuilder: (context,index){
-                                return Column(
-                                  children: [
-                                    Container(
-                                      height: 80,
-                                      padding: const EdgeInsets.all(10),
-                                      width: double.infinity,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: const Color(0xff1D1D40),
-                                      ),
-                                      child: Row(
-                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            !(snapshot.data[index]['type']== 'expense') ? IncomeCard() : Outcome(),
-                                            const SizedBox(width: 12,),
-                                            Container(
-                                              width: 215,
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('${snapshot.data[index]['title']}',style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
-                                                  Text('${snapshot.data[index]['date']}',style: GoogleFonts.poppins(fontSize: 15,color: const Color(0xff8C89B4)),)
-                                                ],
-                                              ),
-                                            ),
-                                            Text('₹${snapshot.data[index]['cost']}',style: GoogleFonts.poppins(fontSize: 20,color: !(snapshot.data[index]['type']== 'expense') ?Colors.green:Colors.redAccent),)
-                                          ]
-                                      ),
-                                    ),
-                                    const SizedBox(height: 15,)
-                                  ],
-                                );
-                              }
-                          ): Container();
-                      }
-                  ),
-                ),
-                Positioned(
-                    bottom: 30,
-                    right: 10,
-                    child: CircleAvatar(
-                      backgroundColor: Color(0xff6359E9),
-                      minRadius: 25,
-                      child: Center(child: IconButton(icon: const Icon(Icons.add,color: Colors.white,),onPressed: (){Get.to(const AddTransactions());},)),
+            Expanded(
+              flex: 1,
+              child: SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: 385,
+                      child: FutureBuilder(
+                        future: fetch(),
+                          builder: (context,snapshot){
+                          return snapshot.hasData? ListView.builder(
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder: (context,index){
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          height: 80,
+                                          padding: const EdgeInsets.all(10),
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            color: const Color(0xff1D1D40),
+                                          ),
+                                          child: Row(
+                                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                !(snapshot.data[index]['type']== 'expense') ? IncomeCard() : Outcome(),
+                                                const SizedBox(width: 12,),
+                                                Container(
+                                                  width: 215,
+                                                  child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    children: [
+                                                      Text('${snapshot.data[index]['title']}',style: GoogleFonts.poppins(fontSize: 20,color: Colors.white),),
+                                                      Text('${snapshot.data[index]['date']}',style: GoogleFonts.poppins(fontSize: 15,color: const Color(0xff8C89B4)),)
+                                                    ],
+                                                  ),
+                                                ),
+                                                Text('₹${snapshot.data[index]['cost']}',style: GoogleFonts.poppins(fontSize: 20,color: !(snapshot.data[index]['type']== 'expense') ?Colors.green:Colors.redAccent),)
+                                              ]
+                                          ),
+                                        ),
+                                        const SizedBox(height: 15,)
+                                      ],
+                                    );
+                                  }
+                              ): Container();
+                          }
+                      ),
+                    ),
+                    Positioned(
+                        bottom: 60,
+                        right: 10,
+                        child: CircleAvatar(
+                          backgroundColor: Color(0xff6359E9),
+                          minRadius: 25,
+                          child: Center(child: IconButton(icon: const Icon(Icons.add,color: Colors.white,),onPressed: (){Get.to(const AddTransactions());},)),
+                        )
                     )
-                )
-              ],
+                  ],
+                ),
+              ),
             ),
 
           ],

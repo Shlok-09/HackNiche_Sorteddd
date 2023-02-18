@@ -16,7 +16,7 @@ Widget Outcome(){
 Widget IncomeCard(){
   return Stack(
     children: [
-      Image.asset('assets/Rectangle.png',scale: 0.65,),
+      Image.asset('assets/Rectangle_blue.png',scale: 0.65,),
       Padding(
         padding: const EdgeInsets.all(25.0),
         child: Image.asset('assets/Arrow.png',),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hackniche_finance/UI/getStarted.dart';
 import 'package:hackniche_finance/auth/auth.dart';
+import 'package:get/get.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -18,6 +20,7 @@ class _ProfileState extends State<Profile> {
           child: Text("Signout"),
           onPressed: (){
             _auth.handleSignOut();
+            Get.to(GetStarted());
           },
         ),
       ),
