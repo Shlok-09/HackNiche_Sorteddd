@@ -17,6 +17,15 @@ module.exports = {
         'secondary-dark-bg': '#1D1D41',
         'light-gray': '#F7F7F7',
         'half-transparent': 'rgba(0, 0, 0, 0.5)',
+        'cyan': '#03C9D7',
+      },
+      colors: {
+        'main-bg': '#FAFBFB',
+        'main-dark-bg': '#141332',
+        'secondary-dark-bg': '#1D1D41',
+        'light-gray': '#F7F7F7',
+        'half-transparent': 'rgba(0, 0, 0, 0.5)',
+        'cyan': '#03C9D7',
       },
       borderWidth: {
         1: '1px',

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
-import { useAuth } from './contexts/AuthContext';
+import { AuthContextProvider, useAuth } from './contexts/AuthContext';
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
 import './App.css';
 import { useStateContext } from './contexts/ContextProvider';
@@ -20,7 +20,11 @@ import MutualFunds from './pages/MutualFunds';
 import Crypto from './pages/Crypto';
 import Stocks from './pages/Stocks';
 import Chat from './components/Chatbot';
-import Login from './components/Login/Login';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Account from './components/Account';
+import ProtectedRoute from './components/ProtectedRoute';
+// import Login from './components/Login/Login';
 // import Signup from './components/Signup';
 
 const App = () => {
@@ -76,6 +80,7 @@ const App = () => {
             </div>
             <div>
               {themeSettings && (<ThemeSettings />)}
+              <AuthContextProvider>
               <Routes>
                 <Route path="/kanban" element={<Kanban />} />  
                 <Route path="/calendar" element={<Calendar />} />
@@ -89,9 +94,11 @@ const App = () => {
                 <Route path="/mutualfunds" element={<MutualFunds />} />
                 <Route path="/crypto" element={<Crypto />} />
                 <Route path="/stocks" element={<Stocks />} />
-                <Route path='/login' element={<Login setCurrUser={setCurrUser}/>} />
+                {/* <Route path='/login' element={<Login setCurrUser={setCurrUser}/>} /> */}
                 {/* <Route exact path='/signup' element={<Signup setCurrUser={setCurrUser}/>} /> */}
               </Routes>
+              </AuthContextProvider>
+              
             </div>         
             <Footer />
           </div>

@@ -1,21 +1,22 @@
-import firebase from "firebase/compat/app";
-// import 'firebase/compat/auth';
-import { getAuth } from "firebase/auth";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+import {getAuth} from 'firebase/auth'
 
-const app = firebase.initializeApp({
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
-});
+const firebaseConfig = {
+  apiKey: "AIzaSyCfPHUmEskLmRfTbZAzNWovmjpFVVa1e0A",
+  authDomain: "hackniche-finance.firebaseapp.com",
+  databaseURL: "https://hackniche-finance-default-rtdb.firebaseio.com",
+  projectId: "hackniche-finance",
+  storageBucket: "hackniche-finance.appspot.com",
+  messagingSenderId: "476529227768",
+  appId: "1:476529227768:web:71fd8c762a5d36ca1e480d"
+};
 
-// firebase.initializeApp(firebaseConfig);
-// firebase.firestore().settings({timestamsInSnapshots : true , merge:true});
-
-// export default firebase;
-
-export const auth = getAuth(app);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+export { app,auth };

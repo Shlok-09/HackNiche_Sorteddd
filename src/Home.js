@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 import styled from 'styled-components';
@@ -8,7 +8,6 @@ import { Navbar, Footer, ThemeSettings } from './components';
 // import { Explore } from './pages';
 import './App.css';
 import TrackVisibility from 'react-on-screen';
-
 import { useStateContext } from './contexts/ContextProvider';
 
 
@@ -66,7 +65,7 @@ export default function Home() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/">Login</a>
+          <a href="/">Login</a>
           </li>
           <li>
             <button>Get Started</button>
@@ -87,7 +86,7 @@ export default function Home() {
           waiting for you. Join the private beta.
         </p> */}
         <button className='p-3 bg-background-dark-bg text-white'>
-          Download for Mac
+          Download Our App
         </button>
       </Content>
     </Wrapper>
